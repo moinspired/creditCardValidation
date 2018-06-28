@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <script>
+    //The Luhn formula is something used to validated credit card numbers.
+      function isCreditCardValid(digitArr){
+        if(digitArr.length >= 4 && digitArr.length <= 19){
+          //declear function scope variables
+          let lastDig, sum = digitArr[digitArr.length-1];   let tempArr = [];
+          //copy array without the last index
+          for(let i=0; i<digitArr.length - 1; i++){
+            tempArr.push(digitArr[i]);
+          }
+
+          //set aside the last digit;
+          lastDig = digitArr[digitArr.length -1];
+          //Starting from the backm multiply the digits in odd position by 2
+          for(let i=tempArr.length-1; i >=0; i=i-2){
+            tempArr[i] = tempArr[i] * 2;
+          }
+          console.log("last digt after multiplication of all the add position: " + digitArr[tempArr.length - 1]);
+          if(tempArr[tempArr.length - 1] > 9){
+            tempArr[tempArr.length - 1] = tempArr[tempArr.length - 1] - 9;
+
+          for(let i=0; i<=tempArr.length - 1; i++){
+            sum += tempArr[i];
+          }
+
+        if(sum % 10 == 0){
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+    }
+      document.getElementById('demo').innerHTML = isCreditCardValid([5,2,2,8,2]);
+    </script>
+  </body>
+</html>
